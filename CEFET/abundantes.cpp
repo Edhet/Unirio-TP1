@@ -6,8 +6,10 @@ int main() {
     printf("Insert number:\n >");
     scanf("%d", &number);
 
-    for (int iter = 0; iter < number; iter++) {
+    for (int iter = 1; iter < number; iter++) {
+        if (number % iter == 0) {
         result += iter;
+        }
     }
     
     if (result > number) {
