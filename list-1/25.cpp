@@ -17,5 +17,5 @@ int main() {
 
     printf("Total value: %d, Entry: %d, First installment: %d, Second installment: %d\n", total_value, entry, first, second);
 
-    return 1;
+    return 0;
 }

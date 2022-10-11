@@ -11,5 +11,5 @@ int main() {
     float triangle_area = base * height / 2;
     printf("\nTriangle area: %f\n", triangle_area);
 
-    return 1;
+    return 0;
 }

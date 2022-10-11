@@ -27,5 +27,5 @@ int main() {
         printf("You're morbidly obese.\n");
     }
 
-    return 1;
+    return 0;
 }

@@ -14,5 +14,5 @@ int main() {
     cost = grass_price * area;
     printf("\n Total area to put grass: %3.1fm\n Total cost of grass for this area: $%3.1f\n", area, cost);
 
-    return 1;
+    return 0;
 }

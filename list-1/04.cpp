@@ -20,5 +20,5 @@ int main() {
 
     printf("\n Product's final value is: $%2.1f\n", final_value);
     
-    return 1;
+    return 0;
 }

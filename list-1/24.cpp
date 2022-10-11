@@ -35,5 +35,5 @@ int main() {
 
     printf("\n%d '10 Reais' bills; \n%d '20 Reais' bills; \n%d '50 Reais' bills; \n%d '100 Reais' bills.\n", ten, twenty, fifty, hundred);
 
-    return 1;
+    return 0;
 }

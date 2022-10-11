@@ -20,5 +20,5 @@ int main() {
 
     printf("\nVolume equals: %f\n", volume);
 
-    return 1;
+    return 0;
 }

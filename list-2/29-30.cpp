@@ -39,5 +39,5 @@ int main() {
         printf("\nInvalid month\n");
     }
 
-    return 1;
+    return 0;
 }

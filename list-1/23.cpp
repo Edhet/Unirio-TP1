@@ -11,7 +11,7 @@ struct TimeStamp {
     result.minutes = this->minutes - rhs.minutes;
     result.seconds = this->seconds - rhs.seconds;
 
-    return result;    
+    return result;
     }
 
     TimeStamp clamp_timestamp() {
@@ -50,5 +50,5 @@ int main() {
     printf("\nThe diference between the two timestamps is: ");
     diference.print_timestamp();
 
-    return 1;
+    return 0;
 }

@@ -12,5 +12,5 @@ int main() {
     result = static_cast<float>(byte_size) / transfer_speed;
     printf("\n   Time until file transfer completion: %2.1fs\n", result);
 
-    return 1;
+    return 0;
 }

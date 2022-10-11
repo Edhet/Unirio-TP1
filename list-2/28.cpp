@@ -20,5 +20,5 @@ int main() {
     }
 
     printf("\nNumbers in the interval: %d \nNumbers divisible by %d in the interval: %d\n", num_counter, div_check, div_counter);
-    return 1;
+    return 0;
 }
