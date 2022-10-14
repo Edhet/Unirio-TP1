@@ -16,7 +16,7 @@ int main() {
     }
 
     float final_value = product_value;
-    final_value -= static_cast<float>(product_value) * (static_cast<float>(discount) / 100.0);
+    final_value -= (float) product_value * ((float) discount / 100.0);
 
     printf("\n Product's final value is: $%2.1f\n", final_value);
     

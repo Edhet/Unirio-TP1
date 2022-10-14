@@ -9,7 +9,7 @@ int main() {
     printf("\nWhat's the file transfer speed in bytes per second: \n");
     scanf("%f", &transfer_speed);
 
-    result = static_cast<float>(byte_size) / transfer_speed;
+    result = (float) byte_size / transfer_speed;
     printf("\n   Time until file transfer completion: %2.1fs\n", result);
 
     return 0;
