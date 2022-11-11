@@ -78,8 +78,11 @@ void readEmployee(char *emp_fn, int *emp_exp, int *contracted_hours, int *worked
     do {
         printf("- Years of experience: ");
         scanf("%d", emp_exp);
-        while((c = getchar()) != '\n' && c != EOF)
-            (void)0;
+        if ((c = getchar()) != '\n' && c != EOF) {
+            *emp_exp = -1;
+            while((c = getchar()) != '\n' && c != EOF)
+                (void)0;
+        }
     } while (*emp_exp < 0);
 
     do {
@@ -98,7 +101,7 @@ void readEmployee(char *emp_fn, int *emp_exp, int *contracted_hours, int *worked
 }
 
 void printPayroll(const float net, const float gross, const float ir, const float inss, const int iter, const int exceding_hours) {
-    printf("Payroll of Employee nº: %d\n- Gross Salary...(R$): %.2f", iter, gross, exceding_hours);
+    printf("Payroll of Employee n: %d\n- Gross Salary...(R$): %.2f", iter, gross, exceding_hours);
     if (exceding_hours != 0)
         printf("\n- Exceding hours.(hr): %dhr", exceding_hours);
     printf("\n- INSS Discount..(R$): %.2f\n- IR Discount....(R$): %.2f\n- Net Salary.....(R$): %.2f\n", inss, ir, net);
@@ -120,7 +123,7 @@ int main() {
     } while (employee_count <= 0);
 
     for (int i = 1; i <= employee_count; i++) {
-        printf("=========================\nEmployee nº: %d\n", i);
+        printf("=========================\nEmployee n: %d\n", i);
         readEmployee(&employee_function, &experience_years, &contracted_hours, &worked_hours);
         net_salary = calculateSalary(employee_function, experience_years, contracted_hours, worked_hours, &ir, &inss, &salary, &exceding_hours);
         printPayroll(net_salary, salary, ir, inss, i, exceding_hours);
