@@ -6,7 +6,8 @@ int right(int value, const int size, long long *K) {
         return 1;
     }
     value = (value / size) + (value % size);
-    if (value > size) value = value % size;
+    if (value % size == 0) value = 1;
+    else if (value > size) value = value % size;
     
     long long temp_K = *K; 
     long long div_factor = 10, mult_factor = 10;
@@ -29,9 +30,9 @@ int left(int value, const int size, long long *K) {
         return 1;
     }
     value = (value / size) + (value % size);
-    if (value > size) value = value % size;
+    if (value % size == 0) value = 1;
+    else if (value > size) value = value % size;
     
-
     long long temp_K = *K; 
     long long div_factor = 10, mult_factor = 10;
 
@@ -87,7 +88,8 @@ int main() {
     
     char c;
 
-    while (1) {    
+    while (1) { 
+        digit_count = 0;   
         printf("Value of K: ");
         scanf("%lld", &K);
         if (K > 0) {
@@ -119,7 +121,7 @@ int main() {
             printf("Wrong input, type again.\n");
     }
 
-    while (1) {    
+    while (1) {
         printf("Operation: ");
         scanf("%c", &operation);
         if (operation == 't' || operation == 'T')
