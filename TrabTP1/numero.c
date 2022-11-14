@@ -6,9 +6,10 @@ int right(int value, const int size, long long *K) {
         return 1;
     }
     value = (value / size) + (value % size);
-
+    if (value > size) value = value % size;
+    
     long long temp_K = *K; 
-    int div_factor = 10, mult_factor = 10;
+    long long div_factor = 10, mult_factor = 10;
 
     for (int i = 0; i < value - 1; i++)
         div_factor = div_factor * 10;
@@ -28,9 +29,11 @@ int left(int value, const int size, long long *K) {
         return 1;
     }
     value = (value / size) + (value % size);
+    if (value > size) value = value % size;
+    
 
     long long temp_K = *K; 
-    long div_factor = 10, mult_factor = 10;
+    long long div_factor = 10, mult_factor = 10;
 
     for (int i = 0; i < size - (value + 1); i++)
         div_factor = div_factor * 10;
@@ -50,7 +53,7 @@ int start(const int value, const int size, long long *K) {
         return 1;
     }
 
-    long div_factor = 1;
+    long long div_factor = 1;
     for (int i = 0; i < size - 1; i++)
         div_factor = div_factor * 10;
     
@@ -65,7 +68,7 @@ int end(const int value, const int size, long long *K) {
     }
 
     long long unwanted = *K; 
-    long div_factor = 10;
+    long long div_factor = 10;
     for (int i = 0; i < size - 1; i++)
         div_factor = div_factor * 10;
     for (int i = 0; i < size - 1; i++)
@@ -87,29 +90,33 @@ int main() {
     while (1) {    
         printf("Value of K: ");
         scanf("%lld", &K);
-        if ((c = getchar()) != '\n' && c != EOF) {
-            printf("Wrong input, type again.\n");
-            while((c = getchar()) != '\n' && c != EOF)
-                (void)0;
-        }
-        else {
-        long long temp_K = K;
-        while (temp_K != 0) {
-                if (temp_K >= 10) {
-                    temp_K = temp_K / 10;
-                    digit_count++;
-                }
-                else if (temp_K < 10 && temp_K >= 0) {
-                    temp_K = 0;
-                    digit_count++;
-                }
+        if (K > 0) {
+            if ((c = getchar()) != '\n' && c != EOF) {
+                printf("Wrong input, type again.\n");
+                while((c = getchar()) != '\n' && c != EOF)
+                    (void)0;
             }
-        
-            if (digit_count <= 11 && digit_count >= 3)
-                break;
-            else
-                printf("Please insert a number with 3 up to 11 characters.\n");
+            else {
+            long long temp_K = K;
+            while (temp_K != 0) {
+                    if (temp_K >= 10) {
+                        temp_K = temp_K / 10;
+                        digit_count++;
+                    }
+                    else if (temp_K < 10 && temp_K >= 0) {
+                        temp_K = 0;
+                        digit_count++;
+                    }
+                }
+            
+                if (digit_count <= 11 && digit_count >= 3)
+                    break;
+                else
+                    printf("Please insert a number with 3 up to 11 characters.\n");
+            }
         }
+        else
+            printf("Wrong input, type again.\n");
     }
 
     while (1) {    

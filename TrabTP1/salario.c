@@ -129,9 +129,12 @@ int main() {
     char c;
     do {
         printf("Qtd: ");
-        scanf("%d", &employee_count);
-        while((c = getchar()) != '\n' && c != EOF)
-            (void)0;
+        if ((c = getchar()) != '\n' && c != EOF) {
+            printf("Wrong input, type again.\n");
+            employee_count = 0;
+            while((c = getchar()) != '\n' && c != EOF)
+                (void)0;
+        }
     } while (employee_count <= 0);
 
     for (int i = 1; i <= employee_count; i++) {
