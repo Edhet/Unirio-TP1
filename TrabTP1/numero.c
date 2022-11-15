@@ -1,58 +1,50 @@
 #include <stdio.h>
 
 int right(int value, const int size, long long *K) {
-    if (value <= 0) {
-        printf("Wrong value.\n");        
+    if (value <= 0)
         return 1;
+
+    value = value % size;
+
+    if (value != 0) {
+        long long temp_K; 
+        long long div_factor = 10, mult_factor = 10;
+
+        for (int i = 0; i < size - 2; i++)
+            mult_factor = mult_factor * 10;
+        
+        for (int i = 0; i < value; i++) {
+            temp_K = (*K % div_factor) * mult_factor;
+            *K = *K / div_factor + temp_K;
+        }
     }
-    value = (value / size) + (value % size);
-    if (value % size == 0) value = 1;
-    else if (value > size) value = value % size;
-    
-    long long temp_K = *K; 
-    long long div_factor = 10, mult_factor = 10;
-
-    for (int i = 0; i < value - 1; i++)
-        div_factor = div_factor * 10;
-
-    for (int i = 0; i < size - (value + 1); i++)
-        mult_factor = mult_factor * 10;
-    
-    temp_K = (temp_K % div_factor) * mult_factor;
-    *K = *K / div_factor + temp_K;
-
     return 0;
 }
 
 int left(int value, const int size, long long *K) {
-    if (value <= 0) {
-        printf("Wrong value.\n");        
+    if (value <= 0)
         return 1;
+
+    value = value % size;
+
+    if (value != 0) {
+        long long temp_K; 
+        long long div_factor = 10, mult_factor = 10;
+
+        for (int i = 0; i < size - 2; i++)
+            div_factor = div_factor * 10;
+
+        for (int i = 0; i < value; i++) {
+            temp_K = (*K % div_factor) * mult_factor;
+            *K = *K / div_factor + temp_K;
+        }
     }
-    value = (value / size) + (value % size);
-    if (value % size == 0) value = 1;
-    else if (value > size) value = value % size;
-    
-    long long temp_K = *K; 
-    long long div_factor = 10, mult_factor = 10;
-
-    for (int i = 0; i < size - (value + 1); i++)
-        div_factor = div_factor * 10;
-
-    for (int i = 0; i < value - 1; i++)
-        mult_factor = mult_factor * 10;
-
-    temp_K = (temp_K % div_factor) * mult_factor;
-    *K = *K / div_factor + temp_K;
-    
     return 0;
 }
 
 int start(const int value, const int size, long long *K) {
-    if (value <= 0 && value >= 9) {
-        printf("Wrong value.\n");        
+    if (value < 0 || value > 9)
         return 1;
-    }
 
     long long div_factor = 1;
     for (int i = 0; i < size - 1; i++)
@@ -63,10 +55,8 @@ int start(const int value, const int size, long long *K) {
 }
 
 int end(const int value, const int size, long long *K) {
-    if (value <= 0 && value >= 9) {
-        printf("Wrong value.\n");        
+    if (value < 0 || value > 9)
         return 1;
-    }
 
     long long unwanted = *K; 
     long long div_factor = 10;
@@ -83,9 +73,8 @@ int end(const int value, const int size, long long *K) {
 
 int main() {
     long long K;
-    int value, digit_count = 0;
+    int op_error, value, digit_count = 0;
     char operation;
-    
     char c;
 
     while (1) { 
@@ -115,7 +104,7 @@ int main() {
                     break;
                 else
                     printf("Please insert a number with 3 up to 11 characters.\n");
-            }
+            }   
         }
         else
             printf("Wrong input, type again.\n");
@@ -136,26 +125,48 @@ int main() {
             switch (operation) {
             case 'd':
             case 'D':
-                right(value, digit_count, &K);
+                op_error = right(value, digit_count, &K);
                 break;
             case 'e':
             case 'E':
-                left(value, digit_count, &K);
+                op_error = left(value, digit_count, &K);
                 break;
             case 'i':
             case 'I':
-                start(value, digit_count, &K);
+                op_error = start(value, digit_count, &K);
                 break;
             case 'f':
             case 'F':
-                end(value, digit_count, &K);
+                op_error = end(value, digit_count, &K);
                 break;
             default:
                 printf("Operation doesn't exist.\n");
                 break;
             }
         }
-        printf("%lld\n", K);
+        if (op_error) {
+            printf("Wrong value.\n");     
+        }   
+        else {
+            long long check_K = K;
+            int check_digits = 0;
+            while (check_K != 0) {
+                if (check_K >= 10) {
+                    check_K = check_K / 10;
+                    check_digits++;
+                }
+                else if (check_K < 10 && check_K >= 0) {
+                    check_K = 0;
+                    check_digits++;
+                }
+            }
+            if (check_digits != digit_count) {
+                check_digits = digit_count - check_digits;
+                for (int i = 0; i < check_digits; i++)
+                    printf("0");
+            }
+            printf("%lld\n", K);
+        }
     }
     return 0;
 }
