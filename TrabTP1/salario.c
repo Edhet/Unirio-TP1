@@ -91,11 +91,11 @@ float calculateSalary(const char emp_fn, const int emp_exp, const int contracted
     *salary = hour_value * (worked_hours - *exceeding_hours);
 
     if (*exceeding_hours < 13)
-        *salary += *exceeding_hours * hour_value * 0.23;
+        *salary += *exceeding_hours * (hour_value + hour_value * 0.23);
     else if (*exceeding_hours < 22)
-        *salary += *exceeding_hours * hour_value * 0.37;
+        *salary += *exceeding_hours * (hour_value + hour_value * 0.37);
     else
-        *salary += *exceeding_hours * hour_value * 0.56;
+        *salary += *exceeding_hours * (hour_value + hour_value * 0.56);
 
     *inss = *salary * 0.11;
     float net_salary = *salary - *inss;
@@ -113,9 +113,9 @@ float calculateSalary(const char emp_fn, const int emp_exp, const int contracted
 }
 
 void printPayroll(const float net, const float gross, const float ir, const float inss, const int iter, const int exceeding_hours) {
-    printf("Payroll of Employee n: %d\n- Gross Salary...(R$): %.2f", iter, gross, exceeding_hours);
+    printf("Payroll of Employee %d\n- Gross Salary...(R$): %.2f", iter, gross, exceeding_hours);
     if (exceeding_hours != 0)
-        printf("\n- Exceeding hours.(hr): %dhr", exceeding_hours);
+        printf("\n- Exceeding hours(hr): %dhr", exceeding_hours);
     printf("\n- INSS Discount..(R$): %.2f\n- IR Discount....(R$): %.2f\n- Net Salary.....(R$): %.2f\n", inss, ir, net);
 }
 
@@ -129,6 +129,7 @@ int main() {
     char c;
     do {
         printf("Qtd: ");
+        scanf("%d", &employee_count);
         if ((c = getchar()) != '\n' && c != EOF) {
             printf("Wrong input, type again.\n");
             employee_count = 0;
@@ -138,7 +139,7 @@ int main() {
     } while (employee_count <= 0);
 
     for (int i = 1; i <= employee_count; i++) {
-        printf("=========================\nEmployee n: %d\n", i);
+        printf("=========================\nEmployee %d\n", i);
         readEmployee(&employee_function, &experience_years, &contracted_hours, &worked_hours);
         net_salary = calculateSalary(employee_function, experience_years, contracted_hours, worked_hours, &ir, &inss, &salary, &exceeding_hours);
         printPayroll(net_salary, salary, ir, inss, i, exceeding_hours);
