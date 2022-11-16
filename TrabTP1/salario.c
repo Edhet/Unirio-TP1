@@ -7,9 +7,12 @@ void readEmployee(char *emp_fn, int *emp_exp, int *contracted_hours, int *worked
         scanf(" %c", emp_fn);
         if ((c = getchar()) != '\n' && c != EOF) {
             printf("Wrong input, type again.\n");
+            *emp_fn = '\0';
             while((c = getchar()) != '\n' && c != EOF)
                 (void)0;
         }
+        else if (*emp_fn != 'p' && *emp_fn != 'P' && *emp_fn != 'a' && *emp_fn != 'A' && *emp_fn != 'g' && *emp_fn != 'G')
+            printf("Wrong input, type again.\n");
     } while (*emp_fn != 'p' && *emp_fn != 'P' && *emp_fn != 'a' && *emp_fn != 'A' && *emp_fn != 'g' && *emp_fn != 'G');
 
     do {
@@ -106,7 +109,6 @@ float calculateSalary(const char emp_fn, const int emp_exp, const int contracted
         *ir = net_salary * 0.2;
     else if (net_salary > 1500)
         *ir = net_salary * 0.15;
-
 
     net_salary =  net_salary - *ir;
     return net_salary;
