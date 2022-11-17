@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int right(int value, const int size, long long *K) {
+int right(long long value, const int size, long long *K) {
     if (value <= 0)
         return 0;
 
@@ -21,7 +21,7 @@ int right(int value, const int size, long long *K) {
     return 1;
 }
 
-int left(int value, const int size, long long *K) {
+int left(long long value, const int size, long long *K) {
     if (value <= 0)
         return 0;
 
@@ -42,7 +42,7 @@ int left(int value, const int size, long long *K) {
     return 1;
 }
 
-int start(const int value, const int size, long long *K) {
+int start(const long long value, const int size, long long *K) {
     if (value < 0 || value > 9)
         return 0;
 
@@ -54,7 +54,7 @@ int start(const int value, const int size, long long *K) {
     return 1;
 }
 
-int end(const int value, const int size, long long *K) {
+int end(const long long value, const int size, long long *K) {
     if (value < 0 || value > 9)
         return 0;
 
@@ -71,8 +71,8 @@ int end(const int value, const int size, long long *K) {
 }
 
 int main() {
-    long long K = 0;
-    int success_op, value, digit_count = 0;
+    long long value, K = 0;
+    int success_op, digit_count = 0;
     char operation;
     char c;
 
@@ -106,7 +106,7 @@ int main() {
         scanf("%c", &operation);
         if (operation == 't' || operation == 'T')
             break;
-        scanf("%d", &value);
+        scanf("%lld", &value);
         if ((c = getchar()) != '\n' && c != EOF) {
             printf("Wrong value, type again.\n");
             while((c = getchar()) != '\n' && c != EOF)

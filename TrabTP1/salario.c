@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void readEmployee(char *emp_fn, int *emp_exp, int *contracted_hours, int *worked_hours) {
+void readEmployee(char *emp_fn, long long *emp_exp, long long *contracted_hours, long long *worked_hours) {
     char c;
     do {
         printf("- Function: ");
@@ -17,39 +17,45 @@ void readEmployee(char *emp_fn, int *emp_exp, int *contracted_hours, int *worked
 
     do {
         printf("- Years of experience: ");
-        scanf("%d", emp_exp);
+        scanf("%lld", emp_exp);
         if ((c = getchar()) != '\n' && c != EOF) {
             printf("Wrong input, type again.\n");
             *emp_exp = -1;
             while((c = getchar()) != '\n' && c != EOF)
                 (void)0;
         }
+        else if (*emp_exp < 0)
+            printf("Wrong input, type again.\n");
     } while (*emp_exp < 0);
 
     do {
         printf("- Contracted hours: ");
-        scanf("%d", contracted_hours);
+        scanf("%lld", contracted_hours);
         if ((c = getchar()) != '\n' && c != EOF) {
             printf("Wrong input, type again.\n");
             *contracted_hours = -1;
             while((c = getchar()) != '\n' && c != EOF)
                 (void)0;
         }
+        else if (*contracted_hours < 0)
+            printf("Wrong input, type again.\n");
     } while (*contracted_hours < 0);
 
     do {
         printf("- Worked hours: ");
-        scanf("%d", worked_hours);
+        scanf("%lld", worked_hours);
         if ((c = getchar()) != '\n' && c != EOF) {
             printf("Wrong input, type again.\n");
             *worked_hours = -1;
             while((c = getchar()) != '\n' && c != EOF)
                 (void)0;
         }
+        else if (*worked_hours < 0)
+            printf("Wrong input, type again.\n");
     } while (*worked_hours < 0);
 }
 
-float calculateSalary(const char emp_fn, const int emp_exp, const int contracted_hours, const int worked_hours, float *ir, float *inss, float *salary, int *exceeding_hours) {
+float calculateSalary(const char emp_fn, const long long emp_exp, const long long contracted_hours, const long long worked_hours, float *ir, float *inss, float *salary, long long *exceeding_hours) {
     const int YEARS_TB_JUNIOR = 2, YEARS_TB_FULL = 5;
     const int JUNIOR_PG = 25, FULL_PG = 30, SENIOR_PG = 38;
     const int JUNIOR_AN = 45, FULL_AN = 55, SENIOR_AN = 70;
@@ -114,7 +120,7 @@ float calculateSalary(const char emp_fn, const int emp_exp, const int contracted
     return net_salary;
 }
 
-void printPayroll(const float net, const float gross, const float ir, const float inss, const int iter, const int exceeding_hours) {
+void printPayroll(const float net, const float gross, const float ir, const float inss, const long long iter, const long long exceeding_hours) {
     printf("Payroll of Employee %d\n- Gross Salary...(R$): %.2f", iter, gross, exceeding_hours);
     if (exceeding_hours != 0)
         printf("\n- Exceeding hours(hr): %dhr", exceeding_hours);
@@ -122,7 +128,7 @@ void printPayroll(const float net, const float gross, const float ir, const floa
 }
 
 int main() {
-    int contracted_hours = 0, worked_hours = 0, exceeding_hours, experience_years = -1;
+    long long contracted_hours = 0, worked_hours = 0, exceeding_hours, experience_years = -1;
     float net_salary, salary, inss, ir = 0;
     char employee_function = '\0';
 
@@ -131,13 +137,15 @@ int main() {
     char c;
     do {
         printf("Qtd: ");
-        scanf("%d", &employee_count);
+        scanf("%lld", &employee_count);
         if ((c = getchar()) != '\n' && c != EOF) {
             printf("Wrong input, type again.\n");
             employee_count = 0;
             while((c = getchar()) != '\n' && c != EOF)
                 (void)0;
         }
+        else if (employee_count <= 0)
+            printf("Wrong input, type again.\n");
     } while (employee_count <= 0);
 
     for (int i = 1; i <= employee_count; i++) {
