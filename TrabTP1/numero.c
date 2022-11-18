@@ -59,13 +59,13 @@ int end(const long long value, const int size, long long *K) {
         return 0;
 
     long long unwanted = *K; 
-    long long div_factor = 100;
+    long long mult_factor = 100;
     for (int i = 0; i < size - 2; i++)
-        div_factor = div_factor * 10;
+        mult_factor = mult_factor * 10;
     for (int i = 0; i < size - 1; i++)
         unwanted = unwanted / 10;
 
-    unwanted = unwanted * div_factor;
+    unwanted = unwanted * mult_factor;
     *K = (*K * 10 - unwanted) + value;
     return 1;
 }
