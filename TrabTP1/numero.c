@@ -6,18 +6,20 @@ int right(long long value, const int size, long long *K) {
 
     value = value % size;
 
-    if (value != 0) {
-        long long temp_K; 
-        long long div_factor = 10, mult_factor = 100;
+    if (value == 0)
+        return 1;
+    
+    long long temp_K; 
+    long long div_factor = 10, mult_factor = 100;
 
-        for (int i = 0; i < size - 3; i++)
-            mult_factor = mult_factor * 10;
-        
-        for (int i = 0; i < value; i++) {
-            temp_K = (*K % div_factor) * mult_factor;
-            *K = *K / div_factor + temp_K;
-        }
+    for (int i = 0; i < size - 3; i++)
+        mult_factor = mult_factor * 10;
+    
+    for (int i = 0; i < value; i++) {
+        temp_K = (*K % div_factor) * mult_factor;
+        *K = *K / div_factor + temp_K;
     }
+    
     return 1;
 }
 
@@ -27,18 +29,20 @@ int left(long long value, const int size, long long *K) {
 
     value = value % size;
 
-    if (value != 0) {
-        long long temp_K; 
-        long long div_factor = 100, mult_factor = 10;
+    if (value == 0)
+        return 1;
 
-        for (int i = 0; i < size - 3; i++)
-            div_factor = div_factor * 10;
+    long long temp_K; 
+    long long div_factor = 100, mult_factor = 10;
 
-        for (int i = 0; i < value; i++) {
-            temp_K = (*K % div_factor) * mult_factor;
-            *K = *K / div_factor + temp_K;
-        }
+    for (int i = 0; i < size - 3; i++)
+        div_factor = div_factor * 10;
+
+    for (int i = 0; i < value; i++) {
+        temp_K = (*K % div_factor) * mult_factor;
+        *K = *K / div_factor + temp_K;
     }
+
     return 1;
 }
 
