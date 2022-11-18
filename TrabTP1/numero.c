@@ -76,7 +76,7 @@ int end(const long long value, const int size, long long *K) {
 
 int main() {
     long long value, K = 0;
-    int success_op, digit_count = 0;
+    int success_op, digit_count;
     char operation;
     char c;
 
