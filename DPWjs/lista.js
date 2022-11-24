@@ -27,11 +27,24 @@ function stringManipulation() {
 
 }
 
-function date() {
+function calcDates() {
     const datum = new Date();
-    console.log(`${datum.getHours()}:${datum.getMinutes()}:${datum.getSeconds()} ${datum.getDay()}/${datum.getMonth() + 1}/${datum.getFullYear()}`);
+    console.log(datum.getHours() + datum.getDate());
+    console.log(datum.getMinutes() + datum.getMonth());
+    console.log(datum.getSeconds() + datum.getFullYear());
 }
 
+function date() {
+    const datum = new Date();
+    console.log(`${datum.getHours()}:${datum.getMinutes()}:${datum.getSeconds()} ${datum.getDate()}/${datum.getMonth() + 1}/${datum.getFullYear()}`);
+}
+
+function calcNumbs() {
+    for (i = 1; i <= 100; i += 3) {
+        if (i <= 100)
+            console.log(`sqrt of ${i} is ${Math.sqrt(i)}`);
+    }
+}
 
 function vectorManipulation() {
     let colores = ["c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "c9", "c10", "c11", "c12"];
@@ -82,7 +95,6 @@ function vectorManipulation() {
     }
 
     colores.splice(1, 1);
-    colores.shift;
     colores.push("c13");
     console.log(colores.toString());
 }
