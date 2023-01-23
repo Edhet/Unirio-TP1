@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main() {
-    const int SIZE = 12;
-    const int HEIGHT = 20;
-    const int MONTH_SIZE = 4;
-    
+#define SIZE 12
+#define HEIGHT 20
+#define MONTH_SIZE 4
+
+int main() {    
     char months[SIZE][MONTH_SIZE] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
     int columnPercentages[SIZE];
     int inpBuffer;
