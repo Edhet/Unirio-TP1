@@ -7,11 +7,11 @@ typedef struct SquareTable {
     int **contents;
 } SquareTable;
 
-void CreateSquareTable(int tableSize, SquareTable *table) {
+void CreateSquareTable(const int tableSize, SquareTable *table) {
     table->contents = malloc(tableSize * sizeof(int *));
     for (int i = 0; i < tableSize; i++)
         table->contents[i] = malloc(tableSize * sizeof(int));
-    table->size = tableSize;
+    table->size = tableSize;                         
     
     char inputChar;
     for (int line = 0; line < tableSize; line++) {
